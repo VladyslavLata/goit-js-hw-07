@@ -4,19 +4,14 @@ import { galleryItems } from './gallery-items.js';
 
 // console.log(galleryItems);
 const galleryEl = document.querySelector('.gallery');
-
-galleryEl.addEventListener('click', onGetOriginalImageClick);
+galleryEl.addEventListener('click', onPreventDefaultClick);
 
 galleryEl.innerHTML = createGalleryItemMarkup(galleryItems);
- 
-function onGetOriginalImageClick(e) {
-    e.preventDefault();
-  if (e.target.nodeName !== "IMG") {
-    return;
-  }
-  
-  const lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
 
+const lightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
+
+function onPreventDefaultClick(e) {
+    e.preventDefault();
   }
 
 function createGalleryItem({ preview, original, description }) {
